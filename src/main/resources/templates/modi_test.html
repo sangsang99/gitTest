@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>수정하기</title>
+</head>
+
+<style>
+table, th, td{
+    border: 1px solid skyblue;
+    text-align: left;
+}
+
+.short{
+    width: 60px;
+}
+
+.long{
+    width: 180px;
+}
+</style>
+
+<body>
+
+    <form action="modi_test.do" method="post">
+        <table>
+            <tr>
+                <th>count</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>권한</th>
+                <th>생성일</th>
+                <th>수정일</th>
+            </tr>
+            <tr th:each="dto : ${dtos}">
+                <td><input th:value="${dtoStat.count}" th:name="|tblUsers[${dtoStat.index}].count|" class="short" readonly></td>
+                <td><input th:value="${dto.userId}" th:name="|tblUsers[${dtoStat.index}].userId|"  class="short" readonly></td>
+                <td><input th:value="${dto.userNmmm}" th:name="|tblUsers[${dtoStat.index}].userNmmm|" class="long"></td>
+                <td><input th:value="${dto.age}" th:name="|tblUsers[${dtoStat.index}].age|" class="short"></td>
+                <td><input th:value="${dto.auth}" th:name="|tblUsers[${dtoStat.index}].auth|" class="short"></td>
+                <td><input th:value="${dto.createDate}" th:name="|tblUsers[${dtoStat.index}].createDate|" class="long" readonly></td>
+                <td><input th:value="${dto.updateDate}" class="long" readonly></td>
+            </tr>
+        </table>
+        <button type="submit">수정</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!-- xmlns:th="http://www.thymeleaf.org" 작성-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>조회하기</title>
+</head>
+
+<style>
+p {
+    display: inline;
+}
+
+table, th, td{
+    border: 1px solid skyblue;
+    text-align: left;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+</style>
+<body>
+
+    SAMPLE_DATA FROM FINDALL
+    <table>
+        <tr>
+            <th>count</th><th>ID</th><th>Name</th><th>Age</th><th>권한</th><th>생성일</th><th>수정일</th>
+        </tr>
+        <tr th:each="dto : ${dtos}">
+            <td th:text="${dtoStat.count}"></td>
+            <td th:text="${dto.userId}"></td>
+            <td th:text="${dto.userNmmm}"></td>
+            <td th:text="${dto.age}"></td>
+            <td th:text="${dto.auth}"></td>
+            <td th:text="${dto.createDate}"></td>
+            <td th:text="${dto.updateDate}"></td>
+        </tr>
+    </table>
+
+    <br><hr width="700px" align="left"/>
+    <button><a href="insert_test">추가하기</a></button> <br>
+    <button><a href="modi_test">수정하기</a></button>
+
+    <form action="delete_test.do" method="post">
+        <button type="submit">삭제하기</button>
+        <input type="text" name="userId" placeholder="삭제할 id 입력">
+    </form>
+
+    
+</body>
+</html> 
