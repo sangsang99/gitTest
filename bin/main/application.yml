@@ -1,0 +1,33 @@
+#properties랑 같이 작성되어있는 경우 yml파일이 덮어씌워져 무시된다.
+#server.port=8090 식으로 작성할 수도 있음.
+server:
+    port: 8090
+
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+
+  datasource: 
+    driver-class-name: org.mariadb.jdbc.Driver
+    # @java -jar {jar 경로} --URL=???
+    url: jdbc:mariadb://172.23.16.23:3306/mobilepark
+    username: root
+    password: root123
+
+  ## JPA Setting Info
+  jpa:
+    hibernate:
+      ddl-auto: none  # option type: create, create-drop, update, validate, none
+    database-platform: org.hibernate.dialect.MariaDBDialect
+
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: 
+              BasicExtractor: INFO #trace : query의 ?에 어떤 값이 들어가는지 추적할 수 있는 설정입니다. TRACE Log에 값을 보여줍니다.
+

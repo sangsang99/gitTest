@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.demo.repo.TblUser;
-import com.example.demo.repo.TblUserList;
 import com.example.demo.service.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -42,29 +42,29 @@ public class TestController {
     }
 
     @PostMapping(value="modi_test.do")
-    public RedirectView doModiTest(TblUser tblUser, TblUserList tblUserList) {
+    public RedirectView doModiTest(@ModelAttribute TblUser tblUser) {
 
         //TODO : 별도의 List클래스 없이 Entity에 담아올 수 있는지 연구 필요
-        List<TblUser> users = tblUserList.getTblUsers();
+        //List<TblUser> users = tblUser.getTblUsers();
 
         /////////////////////////////////////////////////test////////////////////////
         //TODO :tblUserList 불러온게 List가 아니고 무엇인지 궁금함.
-        System.out.println("tblUserList.getTblUsers() : " + tblUserList.getTblUsers());
-        System.out.println("tblUserList: " + tblUserList);
-        System.out.println("tblUserList.getUserNmmm()" + tblUserList.getUserNmmm());
+        // System.out.println("tblUserList.getTblUsers() : " + tblUser.getTblUsers());
+        // System.out.println("tblUserList: " + tblUser);
+        // System.out.println("tblUserList.getUserNmmm()" + tblUser.getUserNmmm());
         
-        for (TblUser user : users) {
-            System.out.println("user.getUserId()" + user.getUserId());
-            System.out.println("user.getUserNmmm()" + user.getUserNmmm());
-            System.out.println("user.getAge()" + user.getAge());
-            System.out.println("user.getAuth() : " + user.getAuth());
-            //TODO : timestamp 형태로 값을 제대로 호출하지 못하는 현상 연구 필요
-            //System.out.println("user.getUserNmmm()" + user.getCreateDate());
-            //System.out.println("user.getUserNmmm()" + user.getUpdateDate());
-        }
+        // for (TblUser user : users) {
+        //     System.out.println("user.getUserId()" + user.getUserId());
+        //     System.out.println("user.getUserNmmm()" + user.getUserNmmm());
+        //     System.out.println("user.getAge()" + user.getAge());
+        //     System.out.println("user.getAuth() : " + user.getAuth());
+        //     //TODO : timestamp 형태로 값을 제대로 호출하지 못하는 현상 연구 필요
+        //     //System.out.println("user.getUserNmmm()" + user.getCreateDate());
+        //     //System.out.println("user.getUserNmmm()" + user.getUpdateDate());
+        // }
         /////////////////////////////////////////////////test////////////////////////
 
-        service.updateData(users);
+        service.updateData(tblUser);
        
         //Boot 2.x.x 부터는 redirect : "" 대신 아래처럼 사용한다고함.
         return new RedirectView("/sample");

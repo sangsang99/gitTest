@@ -50,8 +50,9 @@ public class ServiceImpl implements com.example.demo.service.Service{
     }
 
     @Override
-    public int updateData(List<TblUser> users) {
+    public int updateData(List<String> users) {
 
+        repoJpa.save(users);
         //TODO : JpaRepository.savaAll 함수 연구?
         for (TblUser user : users) {
             Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());

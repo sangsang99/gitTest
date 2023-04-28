@@ -9,6 +9,6 @@ import com.example.demo.repo.TblUser;
 public interface Service {
     public void getAllData(Model model);
     public int insertData(TblUser tblUser);
-    public int updateData(List<TblUser> users);
+    public int updateData(List<String> users);
     public int deleteData(TblUser tblUser);
 }

@@ -1,8 +1,10 @@
 package com.example.demo.repo;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import lombok.Getter;
@@ -24,5 +26,6 @@ public class TblUser{
     private Integer auth; // int로 하면 nullPointError 발생 위험
     private Timestamp createDate;
     private Timestamp updateDate; //not Date
-
+    @ElementCollection //이거 선언해두면 html에서 tblUsers[*]으로 name 선언시 여기에 값 담아옴, controller에서는 @Modelattribute사용 해서받아옴
+    private List<String> tblUsers;
 }
